@@ -17,12 +17,12 @@ class GraficoDeBarrasState extends State<GraficoDeBarras> {
   final Color barBackgroundColor = Colors.white;
   int touchedIndex;
   double total;
-  List<double> gastos = List.generate(7, (index) => 0);
+  List<double> gastos = List.generate(12, (index) => 0);
 
   double calculateTotal() {
     if (gastos.isNotEmpty) {
       gastos.clear();
-      gastos = List.generate(7, (index) => 0);
+      gastos = List.generate(12, (index) => 0);
     }
 
     if (widget.despesas.isEmpty) {
@@ -30,7 +30,7 @@ class GraficoDeBarrasState extends State<GraficoDeBarras> {
     }
     double sum = 0;
     for (Despesa despesa in widget.despesas) {
-      gastos[despesa.data.weekday - 1] += despesa.valor;
+      gastos[despesa.data.month - 1] += despesa.valor;
 
       sum += despesa.valor;
     }
@@ -115,7 +115,7 @@ class GraficoDeBarrasState extends State<GraficoDeBarras> {
   }
 
   // Actual Data
-  List<BarChartGroupData> showingGroups() => List.generate(7, (i) {
+  List<BarChartGroupData> showingGroups() => List.generate(12, (i) {
         switch (i) {
           case 0:
             return makeGroupData(0, gastos[0], isTouched: i == touchedIndex);
@@ -131,6 +131,19 @@ class GraficoDeBarrasState extends State<GraficoDeBarras> {
             return makeGroupData(5, gastos[5], isTouched: i == touchedIndex);
           case 6:
             return makeGroupData(6, gastos[6], isTouched: i == touchedIndex);
+          case 7:
+            return makeGroupData(7, gastos[7], isTouched: i == touchedIndex);
+          case 8:
+            return makeGroupData(8, gastos[8], isTouched: i == touchedIndex);
+          case 9:
+            return makeGroupData(9, gastos[9], isTouched: i == touchedIndex);
+          case 10:
+            return makeGroupData(10, gastos[10], isTouched: i == touchedIndex);
+          case 11:
+            return makeGroupData(11, gastos[11], isTouched: i == touchedIndex);
+          case 12:
+            return makeGroupData(12, gastos[12], isTouched: i == touchedIndex);
+
           default:
             return null;
         }
@@ -142,32 +155,47 @@ class GraficoDeBarrasState extends State<GraficoDeBarras> {
         touchTooltipData: BarTouchTooltipData(
             tooltipBgColor: Colors.blueGrey,
             getTooltipItem: (group, groupIndex, rod, rodIndex) {
-              String weekDay;
+              String mes;
               switch (group.x.toInt()) {
                 case 0:
-                  weekDay = 'Segunda';
+                  mes = 'janeiro';
                   break;
                 case 1:
-                  weekDay = 'Terça';
+                  mes = 'fevereiro';
                   break;
                 case 2:
-                  weekDay = 'Quarta';
+                  mes = 'março';
                   break;
                 case 3:
-                  weekDay = 'Quinta';
+                  mes = 'abril';
                   break;
                 case 4:
-                  weekDay = 'Sexta';
+                  mes = 'maio';
                   break;
                 case 5:
-                  weekDay = 'Sábado';
+                  mes = 'junho';
                   break;
                 case 6:
-                  weekDay = 'Domingo';
+                  mes = 'julho';
+                  break;
+                case 7:
+                  mes = 'Agosto';
+                  break;
+                case 8:
+                  mes = 'Setembro';
+                  break;
+                case 9:
+                  mes = 'Outubro';
+                  break;
+                case 10:
+                  mes = 'Novembro';
+                  break;
+                case 11:
+                  mes = 'Dezembro';
                   break;
               }
               return BarTooltipItem(
-                  weekDay + '\n' + 'R\$ ' + (rod.y - 1).toString(),
+                  mes + '\n' + 'R\$ ' + (rod.y - 1).toString(),
                   TextStyle(color: Colors.white, fontFamily: 'Poppins'));
             }),
         touchCallback: (barTouchResponse) {
@@ -195,19 +223,29 @@ class GraficoDeBarrasState extends State<GraficoDeBarras> {
           getTitles: (double value) {
             switch (value.toInt()) {
               case 0:
-                return 'S';
+                return 'Janeiro';
               case 1:
-                return 'T';
+                return 'Fevereiro';
               case 2:
-                return 'Q';
+                return 'Março';
               case 3:
-                return 'Q';
+                return 'Abril';
               case 4:
-                return 'S';
+                return 'Maio';
               case 5:
-                return 'S';
+                return 'Junho';
               case 6:
-                return 'D';
+                return 'Julho';
+              case 7:
+                return 'Agosto';
+              case 8:
+                return 'Setembro';
+              case 9:
+                return 'Outubro';
+              case 10:
+                return 'Novembro';
+              case 11:
+                return 'Dezembro';
               default:
                 return '';
             }
