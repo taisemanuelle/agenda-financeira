@@ -56,7 +56,7 @@ class GraficoDeBarrasState extends State<GraficoDeBarras> {
               mainAxisSize: MainAxisSize.max,
               children: <Widget>[
                 Text(
-                  'Gastos semanais',
+                  'Gastos Mensais',
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 24,
@@ -216,7 +216,7 @@ class GraficoDeBarrasState extends State<GraficoDeBarras> {
           showTitles: true,
           textStyle: TextStyle(
             color: Color.fromARGB(255, 255, 255, 255),
-            fontWeight: FontWeight.bold,
+            fontWeight: FontWeight.normal,
             fontSize: 14,
           ),
           margin: 16,
