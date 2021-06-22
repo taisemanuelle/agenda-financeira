@@ -1,7 +1,7 @@
 
 # Agenda Financeira 
 
-Agenda Financeira é um aplicativo de gerenciamento de finanças pessoais que irá ajudar os usuários a organizar as despesas mensais de uma forma fluída  para uma melhor experiência no controle de gastos.
+Agenda Financeira é um aplicativo de gerenciamento de finanças pessoais que irá ajudar os usuários a organizar as despesas mensais de uma forma fluída  para uma melhor experiência no controle de gastos
 #  Pré-requisitos para funcionamento do projeto:
 
 <br> <b>Instalar as seguintes ferramentas:</b> 
