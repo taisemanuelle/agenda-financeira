@@ -1,15 +1,29 @@
-import 'package:agenda_app/screen/InicialPage.dart';
+import 'controller/relatorioController.dart';
+import 'controller/transController.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:intl/date_symbol_data_local.dart';
-import 'package:splashscreen/splashscreen.dart';
+import 'package:provider/provider.dart';
+import 'constFiles/colors.dart';
+import 'controller/transDetalhesController.dart';
+import 'view/home.dart';
 
+void main() => runApp(MyApp());
 
-main() {
-  initializeDateFormatting().then((_) {
-    runApp(MaterialApp(
-      home: InicialPage(),
-      debugShowCheckedModeBanner: false,
-    ));
-  });
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => RelatorioController()),
+        ChangeNotifierProvider(create: (_) => TransController()),
+        ChangeNotifierProvider(create: (_) => TransDetalheController()),
+      ],
+      child: MaterialApp(
+        title: 'Agenda Financeira',
+        theme: ThemeData(
+            primaryColor: primaryColor, scaffoldBackgroundColor: Colors.white),
+        debugShowCheckedModeBanner: false,
+        home: Home(),
+      ),
+    );
+  }
 }
